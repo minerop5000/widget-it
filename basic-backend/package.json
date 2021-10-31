@@ -8,7 +8,7 @@
     "dev": "nodemon"
   },
   "keywords": [],
-  "author": "Lukas Paffen",
+  "author": "Edmund Krain",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
