@@ -1,12 +1,12 @@
 import express from "express";
-import * as echoService from '../services/echo';
+import * as userService from '../services/user';
 
 const router = express.Router();
 
-router.post('/', validateEcho, (req, res) => {
-    const message = req.body.message;
+router.post('/', validateUser, (req, res) => {
+    const message = {username: req.body.username, password: req.body.password};
 
-    echoService.saveEcho(message, (err: Error | null, data: any) => {
+    userService.registerUser(message, (err: Error | null, data: any) => {
         if (err) {
             res.status(500);
             res.send(err.message);
@@ -17,7 +17,7 @@ router.post('/', validateEcho, (req, res) => {
 });
 router.get('/', (req, res) => {
     const containsString = req.query.contains;
-    echoService.listEchos(containsString, (err: Error | null, data: any) => {
+    userService.listUsers(containsString, (err: Error | null, data: any) => {
         if (err) {
             res.status(500);
             res.send(err.message);
@@ -27,8 +27,8 @@ router.get('/', (req, res) => {
     });
 });
 
-function validateEcho(req: express.Request, res: express.Response, next: express.NextFunction) {
-    if (req.body.message) {
+function validateUser(req: express.Request, res: express.Response, next: express.NextFunction) {
+    if (req.body.username && req.body.password) {
         next();
     } else {
         res.status(400);
@@ -36,4 +36,4 @@ function validateEcho(req: express.Request, res: express.Response, next: express
     }
 }
 
-export {router as echoController}
+export {router as userController}
