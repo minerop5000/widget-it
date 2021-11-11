@@ -5,10 +5,17 @@
   <h1>Register</h1>
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" name="usernameNAME" aria-describedby="emailHelp"
+      <label for="InputUsername" class="form-label">Username</label>
+      <input type="text" class="form-control" id="InputUsername" name="usernameNAME" aria-describedby="emailHelp"
              ngModel
              placeholder="Enter username" required #username="ngModel">
+    </div>
+    <div class="mb-3">
+      <label for="InputEmail1" class="form-label">Email address</label>
+      <input type="text" class="form-control" id="InputEmail1" name="email"
+             aria-describedby="emailHelp"
+             ngModel
+             placeholder="Enter email" required #email="ngModel">
       <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>
     <div class="mb-3">
