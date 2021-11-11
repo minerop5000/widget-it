@@ -8,8 +8,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule)
   },
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
+    path: 'user',
+    loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule)
   },
   {
     path: '404',
@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '404'
+    component: PageNotFoundComponent
   }
 ];
 
