@@ -19,8 +19,8 @@ export function createUserLog(msg: any, callback: (arg0: Error | null, arg1: { u
     });
 }
 
-export function queryUser(containsString: any, callback: (arg0: Error | null, arg1: any) => void) {
-    db.user.find(containsString ? {message: new RegExp(containsString)} : {}, (err: Error | null, data: any) => {
+export function queryUser(username: string, callback: (arg0: Error | null, arg1: any) => void) {
+    db.user.find(username ? {username: new RegExp(username)} : {}, (err: Error | null, data: any) => {
         if (err) {
             callback(err, null);
         } else {

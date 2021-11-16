@@ -3,11 +3,15 @@ import * as userService from '../services/user';
 
 const router = express.Router();
 
-router.post('/login', validateUser, (req, res) => {
+router.get('/login', validateUser, (req, res) => {
     const message = {username: req.body.username, password: req.body.password};
+    //todo: error handling
 
-    userService.registerUser(message, (err: Error | null, data: any) => {
+    userService.loginUser(message, (err: Error | null, data: any) => {
         if (err) {
+            //if (err.message === "wrong password") {
+            //   res.status(400).send(err.message)
+            //}
             res.status(500);
             res.send(err.message);
         } else {
