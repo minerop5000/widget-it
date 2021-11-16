@@ -23,7 +23,6 @@ export function loginUser(message: any, callback: (arg0: Error | null, arg1: { u
                 } else {
                     callback(Error("wrong password"), null)
                 }
-
             }
         }
     });

@@ -3,7 +3,7 @@ import * as userService from '../services/user';
 
 const router = express.Router();
 
-router.get('/login', validateUser, (req, res) => {
+router.post('/login', validateUser, (req, res) => {
     const message = {username: req.body.username, password: req.body.password};
     //todo: error handling
 
