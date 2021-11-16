@@ -1,14 +1,16 @@
 import * as db from "./db";
 
-export function createUserLog(msg: any, callback: (arg0: Error | null, arg1: { username: any, password: any } | null) => any) {
+export function createUserLog(msg: any, callback: (arg0: Error | null, arg1: { username: any, password: any, email: any } | null) => any) {
     const doc: {
         username: any,
-        password: any
+        password: any,
+        email: any
     } = {
         username: msg.username,
-        password: msg.password
+        password: msg.password,
+        email: msg.email
     };
-    db.user.insert(doc, (err: Error | null, newDoc: { username: any, password: any }) => {
+    db.user.insert(doc, (err: Error | null, newDoc: { username: any, password: any, email: any }) => {
         if (err) {
             callback(err, null);
         } else {

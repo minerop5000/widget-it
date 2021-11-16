@@ -1,6 +1,6 @@
 import * as userModel from '../models/user'
 
-export function registerUser(message: any, callback: (arg0: Error | null, arg1: { username: any, password: any } | null) => any) {
+export function registerUser(message: any, callback: (arg0: Error | null, arg1: { username: any, password: any, email: any } | null) => any) {
     userModel.createUserLog(message, (err, data) => {
         if (err) {
             callback(err, null);

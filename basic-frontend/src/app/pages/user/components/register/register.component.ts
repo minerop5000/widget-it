@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
+import {Echo} from "../../../../models/echo.model";
+import {ApiService} from "../../../../core/services/api.service";
+import {User} from "../../../../models/user.model";
 
 @Component({
   selector: 'app-register',
@@ -8,7 +11,10 @@ import {NgForm} from "@angular/forms";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private apiService: ApiService) {
+    // this.loadEchos();
+  }
 
   ngOnInit(): void {
   }
@@ -16,5 +22,20 @@ export class RegisterComponent implements OnInit {
   onSubmit(f: NgForm) {
     // todo check retype password
     console.log(f.value)
+
+
+    this.apiService.registerUser({
+      username: f.value.username,
+      email: f.value.email,
+      password: f.value.password
+    }).subscribe((data: User) => {
+      console.log(data);
+      //if (this.echos) {
+      //this.echos.push(data);
+      //this.echos.sort((a, b) => a.message.localeCompare(b.message));
+      //} else {
+      // this.echos = [data];
+      //}
+    });
   }
 }
