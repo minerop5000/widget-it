@@ -6,13 +6,15 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {FormsModule} from "@angular/forms";
+import { UserComponent } from './components/user/user.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
