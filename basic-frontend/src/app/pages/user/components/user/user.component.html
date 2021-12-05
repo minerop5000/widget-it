@@ -1,0 +1,5 @@
+<div *ngIf="user_id">
+  <p>logged in with {{user_id}}</p>
+  <button (click)="logOut()">log out</button>
+</div>
+<p *ngIf="!user_id">not logged in</p>

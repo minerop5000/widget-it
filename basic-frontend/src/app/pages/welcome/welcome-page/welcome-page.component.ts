@@ -13,12 +13,14 @@ export class WelcomePageComponent implements OnInit {
   filterInput: string;
 
   echos: Echo[];
+  userid: String;
 
   constructor(private apiService: ApiService) {
     this.loadEchos();
   }
 
   ngOnInit(): void {
+    this.userid = localStorage.getItem("_id")
   }
 
   addEcho(): void {
