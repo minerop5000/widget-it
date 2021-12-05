@@ -8,7 +8,7 @@ router.post('/', validateUser, (req, res) => {
 
     userService.registerUser(message, (err: Error | null, data: any) => {
         if (err) {
-            res.status(500);
+            res.status(400);
             res.send(err.message);
         } else {
             res.send(data);
