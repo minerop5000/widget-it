@@ -11,6 +11,16 @@ export function registerUser(message: any, callback: (arg0: Error | null, arg1: 
     });
 }
 
+export function setSettings(message: any, callback: (arg0: Error | null, arg1: { username: any, settings: any } | null) => any) {
+    userModel.setSettings(message, (err, data) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, data);
+        }
+    });
+}
+
 export function loginUser(message: any, callback: (arg0: Error | null, arg1: { password: any; _id: any; email: any; username: any; settings: any } | null) => any) {
     userModel.queryUser(message.username, (err, data) => {
         if (err) {
