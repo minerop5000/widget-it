@@ -33,17 +33,17 @@ router.post('/register', validateRegisterUser, (req, res) => {
     });
 });
 
-router.get('/', (req, res) => {
-    const containsString = req.query.contains;
-    userService.listUsers(containsString, (err: Error | null, data: any) => {
-        if (err) {
-            res.status(500);
-            res.send(err.message);
-        } else {
-            res.send(data);
-        }
-    });
-});
+// router.get('/', (req, res) => {
+//     const containsString = req.query.contains;
+//     userService.listUsers(containsString, (err: Error | null, data: any) => {
+//         if (err) {
+//             res.status(500);
+//             res.send(err.message);
+//         } else {
+//             res.send(data);
+//         }
+//     });
+// });
 
 function validateRegisterUser(req: express.Request, res: express.Response, next: express.NextFunction) {
     if (req.body.username && req.body.email && req.body.password) {
