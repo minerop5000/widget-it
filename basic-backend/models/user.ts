@@ -11,11 +11,13 @@ export function createUserLog(msg: any, callback: (arg0: Error | null, arg1: { u
     const doc: {
         username: any,
         password: any,
-        email: any
+        email: any,
+        settings: any
     } = {
         username: msg.username,
         password: msg.password,
-        email: msg.email
+        email: msg.email,
+        settings: {}
     };
     db.user.insert(doc, (err: Error | null, newDoc: { username: any, password: any, email: any }) => {
         if (err) {

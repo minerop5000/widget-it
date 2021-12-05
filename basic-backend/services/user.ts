@@ -11,7 +11,7 @@ export function registerUser(message: any, callback: (arg0: Error | null, arg1: 
     });
 }
 
-export function loginUser(message: any, callback: (arg0: Error | null, arg1: { password: any; _id: any; email: any; username: any } | null) => any) {
+export function loginUser(message: any, callback: (arg0: Error | null, arg1: { password: any; _id: any; email: any; username: any; settings: any } | null) => any) {
     userModel.queryUser(message.username, (err, data) => {
         if (err) {
             callback(err, null);
@@ -25,7 +25,13 @@ export function loginUser(message: any, callback: (arg0: Error | null, arg1: { p
             // }
             else {
                 if (data[0].password === message.password) {
-                    callback(null, {_id: data[0]._id, username: data[0].username, password: data[0].password, email: data[0].email});
+                    callback(null, {
+                        _id: data[0]._id,
+                        username: data[0].username,
+                        password: data[0].password,
+                        email: data[0].email,
+                        settings: data[0].settings
+                    });
                 } else {
                     callback(Error("wrong password"), null)
                 }
