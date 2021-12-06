@@ -28,7 +28,7 @@ export function createUserLog(msg: any, callback: (arg0: Error | null, arg1: { u
     });
 }
 
-export function changePassword(msg: any, callback: (arg0: Error | null, message: boolean| null) => any) {
+export function changePassword(msg: any, callback: (arg0: Error | null, message: boolean | null) => any) {
     db.user.update({username: msg.username}, {$set: {password: msg.newPassword}}, {}, (err: Error | null, passwordChanged: any) => {
         if (err) {
             callback(err, null);
@@ -44,30 +44,17 @@ export function setSettings(msg: any, callback: (arg0: Error | null, arg1: { use
     } = {
         username: msg.username
     };
-    const update: {
-        username: any, settings: any
-    } = {
-        username: msg.username,
-        settings: msg.settings
-    };
     const keys = Object.keys(msg["settings"]);
 
     db.user.find(query, (err: Error | null, data: any) => {
         if (err) {
             callback(err, null);
         } else {
-            console.log("moinsen")
             const prevSettings = data[0].settings
-            console.log(prevSettings)
             keys.forEach(function (key) {
                 console.log(key)
                 prevSettings[key] = msg.settings[key]
-                // settingsToSet += "'settings." + key + "':" + msg.settings[key]
-                // settingsToSet["settings." + key] = msg.settings[key]
-
-
             })
-            console.log(prevSettings)
             db.user.update({"username": msg.username}, {$set: {settings: prevSettings}}, {}, (err: Error | null, res: any) => {
                 if (err) {
                     callback(err, null);
@@ -77,8 +64,6 @@ export function setSettings(msg: any, callback: (arg0: Error | null, arg1: { use
             });
         }
     });
-
-
 }
 
 export function queryUser(username: string, callback: (arg0: Error | null, arg1: any) => void) {
@@ -86,6 +71,17 @@ export function queryUser(username: string, callback: (arg0: Error | null, arg1:
         if (err) {
             callback(err, null);
         } else {
+            callback(null, data);
+        }
+    });
+}
+
+export function getNumberOfUser(callback: (arg0: Error | null, arg1: any) => void) {
+    db.user.count({}, (err: Error | null, data: any) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            console.log("count: " + data)
             callback(null, data);
         }
     });

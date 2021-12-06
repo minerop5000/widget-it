@@ -39,7 +39,6 @@ router.post('/changePassword', validateChangePassword, (req, res) => {
             res.send(err.message);
         } else {
             // user verification successful
-
             userService.changePassword(message, (err: Error | null, data: any) => {
                 if (err) {
                     res.status(500);
@@ -71,6 +70,17 @@ router.post('/settings', validateSettings, (req, res) => {
                     res.send("updated settings");
                 }
             });
+        }
+    });
+});
+
+router.get('/numberOfUser', (req, res) => {
+    userService.getNumberOfUser((err: Error | null, data: any) => {
+        if (err) {
+            res.status(500);
+            res.send(err.message);
+        } else {
+            res.status(200).send({numberOfUsers: data});
         }
     });
 });
