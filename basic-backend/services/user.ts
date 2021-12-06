@@ -65,6 +65,16 @@ export function listUsers(containsString: any, callback: (arg0: Error | null, ar
     });
 }
 
+export function getUserInfo(_id: any, callback: (arg0: Error | null, arg1: any | null) => any) {
+    userModel.getUserInfo(_id, (err, data) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, data);
+        }
+    });
+}
+
 export function getNumberOfUser(callback: (arg0: Error | null, arg1: any | null) => any) {
     userModel.getNumberOfUser((err, data) => {
         if (err) {

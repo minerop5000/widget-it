@@ -30,4 +30,17 @@ export class LoginComponent implements OnInit {
 //      this.router.navigate([""])
     });
   }
+
+  updateLocalStorage(_id: string) {
+    this.apiService.registerUser(_id).subscribe((data: User) => {
+      console.log(data);
+      localStorage.setItem("user", data._id);
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("settings", JSON.stringify(data.settings));
+      localStorage.setItem("email", data.email);
+      this.router.navigate([""])
+    });
+  }
+
 }
+

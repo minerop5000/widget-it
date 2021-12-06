@@ -31,14 +31,12 @@ export class RegisterComponent implements OnInit {
       password: f.value.password
     }).subscribe((data: User) => {
       console.log(data);
-      localStorage.setItem("_id", data._id)
+      localStorage.setItem("user", data._id);
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("settings", JSON.stringify(data.settings));
+      localStorage.setItem("email", data.email);
       this.router.navigate([""])
-      //if (this.echos) {
-      //this.echos.push(data);
-      //this.echos.sort((a, b) => a.message.localeCompare(b.message));
-      //} else {
-      // this.echos = [data];
-      //}
     });
   }
 }
+

@@ -11,5 +11,7 @@ export interface LoginUser {
 
 export interface User {
   username: string;
+  settings: any;
+  email: string,
   _id: string;
 }

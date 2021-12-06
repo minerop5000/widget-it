@@ -73,4 +73,16 @@ export class ApiService {
       })
     );
   }
+
+  getUserInfo(user_id: string): Observable<User> {
+    return this.http.post<User>(
+      `${this.baseUrl}/user/getUserInfo`,
+      user_id
+    ).pipe(
+      catchError((err) => {
+        console.log('In Service:', err);
+        return throwError(err);
+      })
+    );
+  }
 }

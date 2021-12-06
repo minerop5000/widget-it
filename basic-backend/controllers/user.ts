@@ -74,6 +74,22 @@ router.post('/settings', validateSettings, (req, res) => {
     });
 });
 
+router.post('/getUserInfo', validateUserId, (req, res) => {
+    userService.getUserInfo(req.body._id, (err: Error | null, data: any) => {
+        if (err) {
+            res.status(500);
+            res.send(err.message);
+        } else {
+            res.status(200).send({
+                "username": data.username,
+                "email": data.email,
+                "settings": data.settings,
+                "_id": data._id
+            });
+        }
+    });
+});
+
 router.get('/numberOfUser', (req, res) => {
     userService.getNumberOfUser((err: Error | null, data: any) => {
         if (err) {
@@ -114,6 +130,15 @@ function validateUser(req: express.Request, res: express.Response, next: express
 
 function validateSettings(req: express.Request, res: express.Response, next: express.NextFunction) {
     if (req.body.username && req.body.settings && req.body.password) {
+        next();
+    } else {
+        res.status(400);
+        res.send('Body validation failed');
+    }
+}
+
+function validateUserId(req: express.Request, res: express.Response, next: express.NextFunction) {
+    if (req.body._id) {
         next();
     } else {
         res.status(400);

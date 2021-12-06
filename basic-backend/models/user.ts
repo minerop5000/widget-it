@@ -86,3 +86,14 @@ export function getNumberOfUser(callback: (arg0: Error | null, arg1: any) => voi
         }
     });
 }
+
+export function getUserInfo(_id: string, callback: (arg0: Error | null, arg1: any) => void) {
+    db.user.find({_id: _id}, (err: Error | null, data: any) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            console.log("found user" + data)
+            callback(null, data[0]);
+        }
+    });
+}
