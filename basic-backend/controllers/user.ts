@@ -9,10 +9,7 @@ router.post('/login', validateUser, (req, res) => {
 
     userService.loginUser(message, (err: Error | null, data: any) => {
         if (err) {
-            //if (err.message === "wrong password") {
-            //   res.status(400).send(err.message)
-            //}
-            res.status(500);
+            res.status(401);
             res.send(err.message);
         } else {
             res.send(data);
@@ -33,12 +30,34 @@ router.post('/register', validateRegisterUser, (req, res) => {
     });
 });
 
+router.post('/changePassword', validateChangePassword, (req, res) => {
+    const message = {username: req.body.username, password: req.body.password, newPassword: req.body.newPassword};
+
+    userService.loginUser(message, (err: Error | null, data: any) => {
+        if (err) {
+            res.status(401);
+            res.send(err.message);
+        } else {
+            // user verification successful
+
+            userService.changePassword(message, (err: Error | null, data: any) => {
+                if (err) {
+                    res.status(500);
+                    res.send(err.message);
+                } else {
+                    res.send("password successfully changed");
+                }
+            });
+        }
+    });
+});
+
 router.post('/settings', validateSettings, (req, res) => {
     const message = {username: req.body.username, password: req.body.password};
 
     userService.loginUser(message, (err: Error | null, data: any) => {
         if (err) {
-            res.status(500);
+            res.status(401);
             res.send(err.message);
         } else {
             // user verification successful
@@ -54,24 +73,19 @@ router.post('/settings', validateSettings, (req, res) => {
             });
         }
     });
-
-
 });
-
-// router.get('/', (req, res) => {
-//     const containsString = req.query.contains;
-//     userService.listUsers(containsString, (err: Error | null, data: any) => {
-//         if (err) {
-//             res.status(500);
-//             res.send(err.message);
-//         } else {
-//             res.send(data);
-//         }
-//     });
-// });
 
 function validateRegisterUser(req: express.Request, res: express.Response, next: express.NextFunction) {
     if (req.body.username && req.body.email && req.body.password) {
+        next();
+    } else {
+        res.status(400);
+        res.send('Body validation failed');
+    }
+}
+
+function validateChangePassword(req: express.Request, res: express.Response, next: express.NextFunction) {
+    if (req.body.username && req.body.password && req.body.newPassword) {
         next();
     } else {
         res.status(400);

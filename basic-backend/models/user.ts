@@ -28,6 +28,16 @@ export function createUserLog(msg: any, callback: (arg0: Error | null, arg1: { u
     });
 }
 
+export function changePassword(msg: any, callback: (arg0: Error | null, message: boolean| null) => any) {
+    db.user.update({username: msg.username}, {$set: {password: msg.newPassword}}, {}, (err: Error | null, passwordChanged: any) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, true);
+        }
+    });
+}
+
 export function setSettings(msg: any, callback: (arg0: Error | null, arg1: { username: any, settings: any } | null) => any) {
     const query: {
         username: any

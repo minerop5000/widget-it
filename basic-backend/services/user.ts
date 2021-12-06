@@ -20,6 +20,15 @@ export function setSettings(message: any, callback: (arg0: Error | null, arg1: {
         }
     });
 }
+export function changePassword(message: any, callback: (arg0: Error | null, arg1: boolean | null) => any) {
+    userModel.changePassword(message, (err, data) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, data);
+        }
+    });
+}
 
 export function loginUser(message: any, callback: (arg0: Error | null, arg1: { password: any; _id: any; email: any; username: any; settings: any } | null) => any) {
     userModel.queryUser(message.username, (err, data) => {
