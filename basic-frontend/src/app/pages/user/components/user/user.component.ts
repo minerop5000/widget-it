@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {ApiService} from "../../../../core/services/api.service";
+import {UserModule} from "../../user.module";
+import {UserService} from "../../../../core/services/user.service";
+
 
 @Component({
   selector: 'app-user',
@@ -10,7 +14,8 @@ export class UserComponent implements OnInit {
   user_id: string;
   user: any;
 
-  constructor(private router: Router) {
+
+  constructor(private apiService: ApiService, private router: Router, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -18,12 +23,16 @@ export class UserComponent implements OnInit {
     if (!this.user_id) {
       this.router.navigate(["user/login"])
     } else {
+      console.log("done1")
+      console.log(this.user_id)
+      this.userService.updateLocalStorage(this.user_id)
       this.user = {
         _id: localStorage.getItem("_id"),
         settings: localStorage.getItem("settings"),
         username: localStorage.getItem("username"),
         email: localStorage.getItem("email")
       }
+      this.user.settings = JSON.parse(this.user.settings)
     }
   }
 
@@ -32,4 +41,7 @@ export class UserComponent implements OnInit {
     this.router.navigate(["user/login"])
   }
 
+  pushSettings(): void {
+    this.apiService.pushSettings(this.user.settings, this.user._id)
+  }
 }

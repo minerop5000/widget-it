@@ -52,24 +52,15 @@ router.post('/changePassword', validateChangePassword, (req, res) => {
 });
 
 router.post('/settings', validateSettings, (req, res) => {
-    const message = {username: req.body.username, password: req.body.password};
 
-    userService.loginUser(message, (err: Error | null, data: any) => {
+
+    const message2 = {_id: req.body._id, settings: req.body.settings};
+    userService.setSettings(message2, (err: Error | null, data: any) => {
         if (err) {
-            res.status(401);
+            res.status(400);
             res.send(err.message);
         } else {
-            // user verification successful
-
-            const message2 = {username: req.body.username, settings: req.body.settings};
-            userService.setSettings(message2, (err: Error | null, data: any) => {
-                if (err) {
-                    res.status(400);
-                    res.send(err.message);
-                } else {
-                    res.send("updated settings");
-                }
-            });
+            res.send("updated settings");
         }
     });
 });
@@ -129,7 +120,7 @@ function validateUser(req: express.Request, res: express.Response, next: express
 }
 
 function validateSettings(req: express.Request, res: express.Response, next: express.NextFunction) {
-    if (req.body.username && req.body.settings && req.body.password) {
+    if (req.body._id && req.body.settings) {
         next();
     } else {
         res.status(400);

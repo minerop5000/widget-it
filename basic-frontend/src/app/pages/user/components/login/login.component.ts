@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem("_id")){
+    if (localStorage.getItem("_id")) {
       this.router.navigate(["user"])
       return
     }
@@ -32,20 +32,14 @@ export class LoginComponent implements OnInit {
       password: f.value.password
     }).subscribe((data: User) => {
       console.log("login", data);
-      this.updateLocalStorage(data._id)
-      this.router.navigate([""])
-    });
-  }
-
-  updateLocalStorage(_id: string) {
-    this.apiService.getUserInfo(_id).subscribe((data: User) => {
-      console.log(data);
       localStorage.setItem("_id", data._id);
       localStorage.setItem("username", data.username);
       localStorage.setItem("settings", JSON.stringify(data.settings));
       localStorage.setItem("email", data.email);
+      this.router.navigate([""])
     });
   }
+
 
 }
 

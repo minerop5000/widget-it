@@ -85,4 +85,19 @@ export class ApiService {
       })
     );
   }
+
+  pushSettings(settings: {}, _id: any) {
+    console.log("push")
+    let t = this.http.post<any>(
+      `${this.baseUrl}/user/settings`,
+      {settings: settings, _id: _id}
+    ).pipe(
+      catchError((err) => {
+        console.log('In Service:', err);
+        return throwError(err);
+      })
+    );
+    console.log("t")
+    console.log(t)
+  }
 }

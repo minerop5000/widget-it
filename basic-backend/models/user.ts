@@ -40,9 +40,9 @@ export function changePassword(msg: any, callback: (arg0: Error | null, message:
 
 export function setSettings(msg: any, callback: (arg0: Error | null, arg1: { username: any, settings: any } | null) => any) {
     const query: {
-        username: any
+        _id: any
     } = {
-        username: msg.username
+        _id: msg._id
     };
     const keys = Object.keys(msg["settings"]);
 
@@ -55,7 +55,7 @@ export function setSettings(msg: any, callback: (arg0: Error | null, arg1: { use
                 console.log(key)
                 prevSettings[key] = msg.settings[key]
             })
-            db.user.update({"username": msg.username}, {$set: {settings: prevSettings}}, {}, (err: Error | null, res: any) => {
+            db.user.update({"_id": msg._id}, {$set: {settings: prevSettings}}, {}, (err: Error | null, res: any) => {
                 if (err) {
                     callback(err, null);
                 } else {
