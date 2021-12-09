@@ -6,11 +6,10 @@
     <div>with settings: {{user.settings| json }}</div>
   </div>
 
-  <button (click)="logOut()">log out</button>
+  <button nz-button nzType="primary" (click)="logOut()">log out</button>
 
 
   <ngx-colors ngx-colors-trigger [(ngModel)]="user.settings.color"></ngx-colors>
-
-  <button (click)="pushSettings()">apply</button>
+  <button nz-button nzType="primary" (click)="pushSettings()">apply</button>
 </div>
 <p *ngIf="!user_id">not logged in</p>

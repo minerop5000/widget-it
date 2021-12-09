@@ -10,6 +10,7 @@ import {UserComponent} from './components/user/user.component';
 import {NgxColorsModule} from "ngx-colors";
 import {User} from "../../models/user.model";
 import {ApiService} from "../../core/services/api.service";
+import {NzButtonModule} from "ng-zorro-antd/button";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {ApiService} from "../../core/services/api.service";
     UserRoutingModule,
     FormsModule,
     NgxColorsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzButtonModule
   ]
 })
 export class UserModule {
