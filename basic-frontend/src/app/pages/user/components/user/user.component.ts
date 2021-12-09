@@ -16,6 +16,11 @@ export class UserComponent implements OnInit {
 
 
   constructor(private apiService: ApiService, private router: Router, private userService: UserService) {
+    this.start();
+  }
+
+  ngOnDestroy() {
+    this.stop();
   }
 
   ngOnInit(): void {
@@ -43,5 +48,28 @@ export class UserComponent implements OnInit {
 
   pushSettings(): void {
     this.apiService.pushSettings(this.user.settings, this.user._id)
+  }
+
+
+
+  private start(): void {
+    window.addEventListener("storage", this.storageEventListener.bind(this));
+  }
+
+  private storageEventListener(event: StorageEvent) {
+    if (event.storageArea == localStorage) {
+      console.log("storage")
+      this.user = {
+        _id: localStorage.getItem("_id"),
+        settings: localStorage.getItem("settings"),
+        username: localStorage.getItem("username"),
+        email: localStorage.getItem("email")
+      }
+      this.user.settings = JSON.parse(this.user.settings)
+    }
+  }
+
+  private stop(): void {
+    window.removeEventListener("storage", this.storageEventListener.bind(this));
   }
 }
