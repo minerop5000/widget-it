@@ -10,7 +10,7 @@ router.get('/:id', (req, res) => {
             res.send(err.message);
         } else {
             if (data.length == 0) {
-                res.status(204).send()
+                res.status(404).send({"message": "id not found"});
             } else {
                 res.send(data);
             }
