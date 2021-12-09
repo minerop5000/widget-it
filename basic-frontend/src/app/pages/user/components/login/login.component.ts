@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {User} from "../../../../models/user.model";
 import {ApiService} from "../../../../core/services/api.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import {ApiService} from "../../../../core/services/api.service";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -26,19 +27,18 @@ export class LoginComponent implements OnInit {
       password: f.value.password
     }).subscribe((data: User) => {
       console.log("login", data);
-      localStorage.setItem("_id", data._id)
-//      this.router.navigate([""])
+      this.updateLocalStorage(data._id)
+      this.router.navigate([""])
     });
   }
 
   updateLocalStorage(_id: string) {
-    this.apiService.registerUser(_id).subscribe((data: User) => {
+    this.apiService.getUserInfo(_id).subscribe((data: User) => {
       console.log(data);
-      localStorage.setItem("user", data._id);
+      localStorage.setItem("_id", data._id);
       localStorage.setItem("username", data.username);
       localStorage.setItem("settings", JSON.stringify(data.settings));
       localStorage.setItem("email", data.email);
-      this.router.navigate([""])
     });
   }
 

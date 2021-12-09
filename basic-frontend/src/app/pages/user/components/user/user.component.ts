@@ -14,13 +14,13 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_id = localStorage.getItem("_id");
-    if(!this.user_id){
+    if (!this.user_id) {
       this.router.navigate(["user/login"])
     }
   }
 
-  logOut():void{
-    localStorage.removeItem("_id");
+  logOut(): void {
+    localStorage.clear();
     this.router.navigate(["user/login"])
   }
 
