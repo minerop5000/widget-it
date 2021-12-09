@@ -6,7 +6,7 @@
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="emailHelp"
+      <input nz-input nzSize="default"  type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="emailHelp"
              ngModel
              placeholder="Enter username" required #username="ngModel">
       <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>

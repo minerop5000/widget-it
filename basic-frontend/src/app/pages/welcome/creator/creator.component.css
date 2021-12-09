@@ -1,0 +1,10 @@
+.creator{
+  background-color: gray;
+  min-height: 200px;
+  min-width: 200px;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
