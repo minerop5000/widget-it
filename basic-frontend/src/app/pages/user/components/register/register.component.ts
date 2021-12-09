@@ -18,6 +18,11 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem("_id")){
+      this.router.navigate(["../user"])
+      return
+    }
+    localStorage.clear();
   }
 
   onSubmit(f: NgForm) {
@@ -31,7 +36,7 @@ export class RegisterComponent implements OnInit {
       password: f.value.password
     }).subscribe((data: User) => {
       console.log(data);
-      localStorage.setItem("user", data._id);
+      localStorage.setItem("_id", data._id);
       localStorage.setItem("username", data.username);
       localStorage.setItem("settings", JSON.stringify(data.settings));
       localStorage.setItem("email", data.email);

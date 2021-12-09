@@ -1,5 +1,12 @@
 <div *ngIf="user_id">
-  <p>logged in with {{user_id}}</p>
+  <div id="user_info">
+    <p>logged in with {{user_id}}</p>
+    <div>as {{user.username}}</div>
+    <div>email {{user.email}}</div>
+    <div>with settings: {{user.settings}}</div>
+  </div>
+
   <button (click)="logOut()">log out</button>
+
 </div>
 <p *ngIf="!user_id">not logged in</p>

@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 })
 export class UserComponent implements OnInit {
   user_id: string;
+  user: any;
 
   constructor(private router: Router) {
   }
@@ -16,6 +17,13 @@ export class UserComponent implements OnInit {
     this.user_id = localStorage.getItem("_id");
     if (!this.user_id) {
       this.router.navigate(["user/login"])
+    } else {
+      this.user = {
+        _id: localStorage.getItem("_id"),
+        settings: localStorage.getItem("settings"),
+        username: localStorage.getItem("username"),
+        email: localStorage.getItem("email")
+      }
     }
   }
 

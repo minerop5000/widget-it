@@ -15,6 +15,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem("_id")){
+      this.router.navigate(["user"])
+      return
+    }
+    localStorage.clear();
   }
 
   onSubmit(f: NgForm) {
