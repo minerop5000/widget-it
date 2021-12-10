@@ -24,13 +24,11 @@ export class WelcomePageComponent implements OnInit {
     this.loadEchos();
 
     this.messageService.getMessage().subscribe(message => {
-      console.log(message)
       var index = this.moduleList.map((x: { [x: string]: any; }) => {
         return x["_id"];
       }).indexOf(message["idToDelete"]);
 
       this.moduleList.splice(index, 1);
-      console.log(this.moduleList);
     });
     //todo api user remove
   }
@@ -80,8 +78,7 @@ export class WelcomePageComponent implements OnInit {
     })
   }
 
-  // ngOnDestroy() {
-  //   // unsubscribe to ensure no memory leaks
-  //   this.subscription.unsubscribe();
-  // }
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+  }
 }

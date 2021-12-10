@@ -21,4 +21,8 @@ export class UserService {
       console.log("set done")
     });
   }
+
+  setSettings(setting:any){
+
+  }
 }
