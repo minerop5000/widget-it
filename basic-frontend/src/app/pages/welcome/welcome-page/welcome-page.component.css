@@ -13,3 +13,14 @@
   margin: 16px 24px 16px 0;
   float: left;
 }
+
+.creator{
+  background-color: white;
+  min-height: 200px;
+  min-width: 200px;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

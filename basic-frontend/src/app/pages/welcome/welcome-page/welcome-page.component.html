@@ -7,7 +7,18 @@
   <app-modul></app-modul>
   <app-modul></app-modul>
 
-  <app-creator></app-creator>
+  <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+    <div class="creator">
+      <i nz-icon nzType="plus-circle" nzTheme="twotone" style="font-size: 50px"></i>
+      <!--  <button nz-button nzType="default" nzShape="circle"><i nz-icon nzType="plus-circle"></i></button>-->
+    </div>
+  </a>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu>
+      <li nz-menu-item (click)="$event">1st menu item</li>
+      <li nz-menu-item>2nd menu item</li>
+    </ul>
+  </nz-dropdown-menu>
 </div>
 
 <!--<div>-->
