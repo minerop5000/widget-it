@@ -1,4 +1,11 @@
 <div class="modul">
-  <p>modul {{name}} works!</p>
+  <div class="moduleHeader">
+    <div>{{name}}</div>
+    <div><i nz-icon nzType="edit" nzTheme="twotone"></i></div>
+    <a (click)="delete()"><i nz-icon nzType="delete" nzTheme="twotone"></i></a>
+  </div>
+  <div class="moduleContent">
+    {{moduleID}}
+  </div>
 </div>
 

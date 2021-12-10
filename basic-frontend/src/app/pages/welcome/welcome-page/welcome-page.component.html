@@ -1,11 +1,10 @@
 <p>{{userid}}</p>
 
-
 <div id="modulContainer">
 
+  {{moduleList}}
   <app-modul name="eins"></app-modul>
-  <app-modul></app-modul>
-  <app-modul></app-modul>
+  <app-modul *ngFor="let mod of moduleList" name={{mod.name}} moduleID={{mod._id}}></app-modul>
 
   <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
     <div class="creator">
@@ -15,8 +14,7 @@
   </a>
   <nz-dropdown-menu #menu="nzDropdownMenu">
     <ul nz-menu>
-      <li nz-menu-item (click)="$event">1st menu item</li>
-      <li nz-menu-item>2nd menu item</li>
+      <li nz-menu-item (click)="createModule(item)" *ngFor="let item of listOfModulTypes" >{{item}}</li>
     </ul>
   </nz-dropdown-menu>
 </div>

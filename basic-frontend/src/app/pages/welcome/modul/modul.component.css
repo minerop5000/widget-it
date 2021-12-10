@@ -1,6 +1,15 @@
-.modul{
+.modul {
   background-color: white;
   min-height: 200px;
   min-width: 200px;
   border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.moduleHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
 }
