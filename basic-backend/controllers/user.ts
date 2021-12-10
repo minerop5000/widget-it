@@ -60,7 +60,7 @@ router.post('/settings', validateSettings, (req, res) => {
             res.status(400);
             res.send(err.message);
         } else {
-            res.json({message: "updated settings"});
+            res.json(data);
         }
     });
 });
