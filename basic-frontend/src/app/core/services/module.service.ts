@@ -25,4 +25,15 @@ export class ModuleService {
       })
     );
   }
+
+  getModule(id: string): Observable<OwnModule> {
+    return this.http.get<OwnModule>(
+      `${this.baseUrl}/${id}`
+    ).pipe(
+      catchError((err) => {
+        console.log('In Service:', err);
+        return throwError(err);
+      })
+    );
+  }
 }
