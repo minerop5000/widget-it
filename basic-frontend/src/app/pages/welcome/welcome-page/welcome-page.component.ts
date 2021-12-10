@@ -3,6 +3,7 @@ import {Echo} from "../../../models/echo.model";
 import {ApiService} from "../../../core/services/api.service";
 import {ModuleService} from "../../../core/services/module.service";
 import {MessageService} from "../../../core/services/message-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-welcome-page',
@@ -20,7 +21,22 @@ export class WelcomePageComponent implements OnInit {
   listOfModulTypes = ["notes", "weather", "counter"]
   moduleList: any = []
 
-  constructor(private apiService: ApiService, private moduleService: ModuleService, private messageService: MessageService) {
+  constructor(private apiService: ApiService, private moduleService: ModuleService, private messageService: MessageService, private router: Router) {
+    if (!localStorage.getItem("_id")) {
+      this.router.navigate(["user/login"])
+    }
+
+    this.apiService.getUserInfo(localStorage.getItem("_id")).subscribe(user => {
+      console.log(user)
+      if (user.settings.moduleList) {
+        for (let mod of user.settings.moduleList) {
+          moduleService.getModule(mod).subscribe(module => {
+            this.moduleList.push(module)
+          })
+        }
+      }
+    })
+
     this.loadEchos();
 
     this.messageService.getMessage().subscribe(message => {
@@ -29,8 +45,15 @@ export class WelcomePageComponent implements OnInit {
       }).indexOf(message["idToDelete"]);
 
       this.moduleList.splice(index, 1);
+      console.log("delete")
+      console.log(this.moduleList)
+      let t = []
+      for (let i of this.moduleList) {
+        t.push(i["_id"])
+      }
+      console.log(t)
+      this.apiService.pushSettings({moduleList: t}, this.userid)
     });
-    //todo api user remove
   }
 
 
@@ -75,6 +98,13 @@ export class WelcomePageComponent implements OnInit {
       console.log(data)
       this.moduleList.push(data)
       console.log(this.moduleList)
+      let t = []
+      for (let i of this.moduleList) {
+        t.push(i["_id"])
+      }
+      console.log("pushung")
+      console.log(t)
+      this.apiService.pushSettings({moduleList: t}, this.userid)
     })
   }
 
