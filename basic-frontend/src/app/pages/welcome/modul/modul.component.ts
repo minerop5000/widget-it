@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MessageService} from "../../../core/services/message-service.service";
 import {ModuleService} from "../../../core/services/module.service";
 import {ApiService} from "../../../core/services/api.service";
+import {WeatherService} from "../../../core/services/weather.service";
 
 @Component({
   selector: 'app-modul',
@@ -14,7 +15,7 @@ export class ModulComponent implements OnInit {
   @Input() content: any;
   @Input() modType: string;
 
-  constructor(private messageService: MessageService, private moduleService: ModuleService, private apiService: ApiService) {
+  constructor(private messageService: MessageService, private moduleService: ModuleService, private apiService: ApiService, private weatherService: WeatherService) {
   }
 
   delete(): void {
@@ -32,6 +33,10 @@ export class ModulComponent implements OnInit {
       this.apiService.getUserCount().subscribe(number => {
         this.content = number["numberOfUsers"];
         console.log(this.content)
+      })
+    } else if(this.modType == "weather") {
+      this.weatherService.getWeather("").subscribe(number => {
+        console.log(number)
       })
     }
   }
