@@ -11,6 +11,8 @@ export class ModuleService {
 
   private readonly baseUrl = 'http://localhost:3000/api/module';
 
+  public moduelContent = {}
+
   constructor(private http: HttpClient) {
   }
 

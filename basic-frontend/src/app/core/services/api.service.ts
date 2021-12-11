@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {CreateEchoInput, Echo} from '../../models/echo.model';
-import {catchError} from 'rxjs/operators';
+import {catchError, tap} from 'rxjs/operators';
 import {LoginUser, RegisterUser, User} from "../../models/user.model";
 
 @Injectable({
@@ -78,6 +78,17 @@ export class ApiService {
     return this.http.post<User>(
       `${this.baseUrl}/user/getUserInfo`,
       {_id: user_id}
+    ).pipe(
+      catchError((err) => {
+        console.log('In Service:', err);
+        return throwError(err);
+      })
+    );
+  }
+
+  getUserCount(): Observable<any> {
+    return this.http.get<any>(
+      `${this.baseUrl}/user/numberOfUser`
     ).pipe(
       catchError((err) => {
         console.log('In Service:', err);

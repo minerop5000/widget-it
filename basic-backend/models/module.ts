@@ -6,7 +6,7 @@ export function getModule(id: string, callback: (arg0: Error | null, arg1: any |
         if (err) {
             callback(err, null);
         } else {
-            callback(null, res[0]);
+            callback(null, res);
         }
     });
 }

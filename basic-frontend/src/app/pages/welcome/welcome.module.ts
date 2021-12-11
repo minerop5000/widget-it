@@ -30,7 +30,11 @@ import {NzDropDownModule} from "ng-zorro-antd/dropdown";
     NzBreadCrumbModule,
     NzButtonModule,
     NzDropDownModule
+  ],
+  providers: [
+    { provide: 'A', useValue: 1231111111111111111111111111}   // define a string token
   ]
 })
+
 export class WelcomeModule {
 }

@@ -4,7 +4,7 @@ import * as echoService from '../services/module';
 const router = express.Router();
 
 router.get('/:id', (req, res) => {
-    echoService.getModule(req.params.id, (err: Error | null, data: []) => {
+    echoService.getModule(req.params.id, (err: Error | null, data: any) => {
         if (err) {
             res.status(500);
             res.send(err.message);
@@ -12,7 +12,7 @@ router.get('/:id', (req, res) => {
             if (data.length == 0) {
                 res.status(404).send({"message": "id not found"});
             } else {
-                res.send(data);
+                res.send(data[0]);
             }
         }
     });

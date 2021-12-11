@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import {Echo} from "../../../models/echo.model";
 import {ApiService} from "../../../core/services/api.service";
 import {ModuleService} from "../../../core/services/module.service";
@@ -18,10 +18,10 @@ export class WelcomePageComponent implements OnInit {
   echos: Echo[];
   userid: String;
 
-  listOfModulTypes = ["notes", "weather", "counter"]
+  listOfModulTypes = ["notes", "weather", "counter", "userCount"]
   moduleList: any = []
 
-  constructor(private apiService: ApiService, private moduleService: ModuleService, private messageService: MessageService, private router: Router) {
+  constructor(private apiService: ApiService, private moduleService: ModuleService, private messageService: MessageService, private router: Router, private injector: Injector) {
     if (!localStorage.getItem("_id")) {
       this.router.navigate(["user/login"])
     }
@@ -38,6 +38,8 @@ export class WelcomePageComponent implements OnInit {
     })
 
     this.loadEchos();
+    const A = this.injector.get('A');
+    console.log(A);
 
     this.messageService.getMessage().subscribe(message => {
       var index = this.moduleList.map((x: { [x: string]: any; }) => {
@@ -105,6 +107,7 @@ export class WelcomePageComponent implements OnInit {
       console.log("pushung")
       console.log(t)
       this.apiService.pushSettings({moduleList: t}, this.userid)
+      this.moduleService.moduelContent = this.moduleList
     })
   }
 

@@ -4,8 +4,16 @@
     <div><i nz-icon nzType="edit" nzTheme="twotone"></i></div>
     <a (click)="delete()"><i nz-icon nzType="delete" nzTheme="twotone"></i></a>
   </div>
-  <div class="moduleContent">
-    {{moduleID}}
+  <div class="content" [ngSwitch]="modType">
+
+    <div *ngSwitchCase="'userCount'" class="content">
+      <div>Number of registered users:</div>
+      <div>{{content}}</div>
+    </div>
+    <div *ngSwitchDefault>
+      {{moduleID}}
+      {{content}}
+    </div>
   </div>
 </div>
 
