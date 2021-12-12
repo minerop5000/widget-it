@@ -18,15 +18,15 @@ import {NzInputModule} from "ng-zorro-antd/input";
     ResetPasswordComponent,
     UserComponent
   ],
-    imports: [
-        CommonModule,
-        UserRoutingModule,
-        FormsModule,
-        NgxColorsModule,
-        ReactiveFormsModule,
-        NzButtonModule,
-        NzInputModule
-    ]
+  imports: [
+    CommonModule,
+    UserRoutingModule,
+    FormsModule,
+    NgxColorsModule,
+    ReactiveFormsModule,
+    NzButtonModule,
+    NzInputModule
+  ]
 })
 export class UserModule {
   constructor() {
