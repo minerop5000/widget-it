@@ -50,7 +50,7 @@ export function setSettings(msg: any, callback: (arg0: Error | null, arg1: { use
         if (err) {
             callback(err, null);
         } else {
-            if(data.length == 0) {
+            if (data.length == 0) {
                 callback(Error("id not found"), null);
                 return
             }

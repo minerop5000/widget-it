@@ -50,7 +50,7 @@ export class WelcomePageComponent implements OnInit {
 
   createModule(type: string) {
     let name = "widget name";
-    if(type=="weather") name = "stuttgart";
+    if (type == "weather") name = "stuttgart";
     let t = this.moduleService.createModule(type, name, {})
     t.subscribe(data => {
       this.moduleList.push(data)

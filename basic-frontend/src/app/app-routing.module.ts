@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule),
-    data: {title:"widget-it"}
+    data: {title: "widget-it"}
   },
   {
     path: 'user',

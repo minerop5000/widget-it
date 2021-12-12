@@ -1,17 +1,17 @@
-.userContent{
+.userContent {
   display: flex;
   flex-flow: column;
   align-items: center;
   font-size: large;
 }
 
-#user_info{
+#user_info {
   display: flex;
   flex-flow: column;
   align-items: center;
 }
 
 
-button{
+button {
   margin-top: 20px;
 }

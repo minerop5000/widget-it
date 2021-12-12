@@ -38,8 +38,8 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem("email", data.email);
         this.router.navigate([""])
       });
-    }else{
-      f.setValue({"username": f.value.username, "password": "",email: f.value.email, "pas": ""})
+    } else {
+      f.setValue({"username": f.value.username, "password": "", email: f.value.email, "pas": ""})
     }
   }
 }

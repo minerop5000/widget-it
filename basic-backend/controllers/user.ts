@@ -70,7 +70,7 @@ router.post('/getUserInfo', validateUserId, (req, res) => {
             res.status(500);
             res.send(err.message);
         } else {
-            if(data.length == 0){
+            if (data.length == 0) {
                 res.status(401);
                 res.send("user not found");
                 return

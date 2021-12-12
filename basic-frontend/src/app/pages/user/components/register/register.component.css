@@ -9,16 +9,16 @@
   margin: 20px;
 }
 
-.form-check{
+.form-check {
   display: flex;
   justify-content: space-between;
 }
 
-div{
+div {
   margin-bottom: 20px;
 }
 
-.form-text{
+.form-text {
   color: gray;
   font-size: medium;
 }
