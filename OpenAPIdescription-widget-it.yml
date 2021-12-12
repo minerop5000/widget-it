@@ -147,7 +147,7 @@ paths:
       responses:
         200:
           description: ok
-          content: 
+          content:
             application/json:
               schema:
                 type: object
@@ -185,12 +185,12 @@ paths:
 
   /module/{id}:
     parameters:
-    - schema:
-        type: integer
-      name: id
-      description: _id of module
-      in: path
-      required: true
+      - schema:
+          type: integer
+        name: id
+        description: _id of module
+        in: path
+        required: true
     get:
       tags:
         - module
@@ -207,12 +207,12 @@ paths:
           content: {}
   /module/create/{type}:
     parameters:
-    - schema:
-        type: string
-      name: type
-      description: type of module
-      in: path
-      required: true
+      - schema:
+          type: string
+        name: type
+        description: type of module
+        in: path
+        required: true
     post:
       tags:
         - module
@@ -238,12 +238,12 @@ paths:
                 $ref: "#/components/schemas/Module"
   /module/{_id}:
     parameters:
-    - schema:
-        type: string
-      name: type
-      description: type of module
-      in: path
-      required: true
+      - schema:
+          type: string
+        name: type
+        description: type of module
+        in: path
+        required: true
     post:
       tags:
         - module
@@ -272,8 +272,6 @@ paths:
         404:
           description: id not found
           content: {}
-
-
 
 components:
   schemas:
