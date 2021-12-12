@@ -1,6 +1,10 @@
 # widget-it
+
+your new browser starting page!
+
+![screenshot](widget-it.png)
  
-## quick start
+## set-up
 in basic-frontend/
 ```
 npm install
