@@ -237,7 +237,7 @@ paths:
     parameters:
       - schema:
           type: string
-        name: type
+        name: _id
         description: type of module
         in: path
         required: true
@@ -294,12 +294,3 @@ components:
           type: string
         content:
           type: object
-
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
