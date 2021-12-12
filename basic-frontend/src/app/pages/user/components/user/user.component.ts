@@ -37,7 +37,6 @@ export class UserComponent implements OnInit {
       }
       this.user.settings = JSON.parse(this.user.settings)
       this.apiService.getUserInfo(localStorage.getItem("_id")).subscribe(data => {
-        console.log(data)
         if (data.settings.color) {
           this.user.settings.color = data.settings.color
         }
@@ -55,7 +54,6 @@ export class UserComponent implements OnInit {
     this.apiService.pushSettings(this.user.settings, this.user._id)
     this.messageService.setUpdateColor()
     this.apiService.getUserInfo(localStorage.getItem("_id")).subscribe(data => {
-      console.log(data)
       if (data.settings.color) {
         this.user.settings.color = data.settings.color
       }
@@ -67,7 +65,6 @@ export class UserComponent implements OnInit {
     this.apiService.pushSettings(this.user.settings, this.user._id)
     this.messageService.setUpdateColor()
     this.apiService.getUserInfo(localStorage.getItem("_id")).subscribe(data => {
-      console.log(data)
       if (data.settings.color) {
         this.user.settings.color = data.settings.color
       }

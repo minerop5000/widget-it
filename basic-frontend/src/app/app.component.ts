@@ -43,7 +43,6 @@ export class AppComponent {
     this.back_color = "#e0dddd"
     if (!!localStorage.getItem("_id")) {
       this.apiService.getUserInfo(localStorage.getItem("_id")).subscribe(user => {
-        console.log(user)
         if (user.settings.color) {
           this.back_color = user.settings.color
         }
