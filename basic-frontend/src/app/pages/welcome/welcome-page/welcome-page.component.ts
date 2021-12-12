@@ -68,8 +68,4 @@ export class WelcomePageComponent implements OnInit {
       this.moduleService.moduelContent = this.moduleList
     })
   }
-
-  ngOnDestroy() {
-    // unsubscribe to ensure no memory leaks todo
-  }
 }

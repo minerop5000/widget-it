@@ -2,14 +2,14 @@
   <div id="user_info">
     <p>logged in as {{user.username}}</p>
     <div>email {{user.email}}</div>
-    <hr>
-    <div>settings</div>
-    <div>{{user.settings| json }}</div>
+    <a [routerLink]="['./reset-password']" style="font-size: medium">Change Password</a>
+    <button nz-button nzType="primary" (click)="logOut()">log out</button>
+    <!--    <div>settings</div>-->
+    <!--    <div>{{user.settings| json }}</div>-->
   </div>
 
-  <button nz-button nzType="primary" (click)="logOut()">log out</button>
 
-  <ngx-colors ngx-colors-trigger [(ngModel)]="user.settings.color"></ngx-colors>
-  <button nz-button nzType="primary" (click)="pushSettings()">apply</button>
+<!--  <ngx-colors ngx-colors-trigger [(ngModel)]="user.settings.color"></ngx-colors>-->
+<!--  <button nz-button nzType="primary" (click)="pushSettings()">apply</button>-->
 </div>
 <p *ngIf="!user_id">not logged in</p>

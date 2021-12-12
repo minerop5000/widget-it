@@ -2,10 +2,16 @@
   display: flex;
   flex-flow: column;
   align-items: center;
+  font-size: large;
 }
 
 #user_info{
   display: flex;
   flex-flow: column;
   align-items: center;
+}
+
+
+button{
+  margin-top: 20px;
 }

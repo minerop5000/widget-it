@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.post('/login', validateUser, (req, res) => {
     const message = {username: req.body.username, password: req.body.password};
-    //todo: error handling
 
     userService.loginUser(message, (err: Error | null, data: any) => {
         if (err) {

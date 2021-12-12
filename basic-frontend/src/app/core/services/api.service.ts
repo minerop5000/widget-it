@@ -80,14 +80,6 @@ export class ApiService {
       {settings: settings, _id: _id}
     ).subscribe(data => {
     })
-    //   .(
-    //   catchError((err) => {
-    //     console.log('In Service:', err);
-    //     return throwError(err);
-    //   })
-    // );
-    // console.log("t")
-    // console.log(t) todo
   }
 
 }
