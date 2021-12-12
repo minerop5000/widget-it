@@ -1,5 +1,4 @@
 import {Component, Injector, OnInit} from '@angular/core';
-import {Echo} from "../../../models/echo.model";
 import {ApiService} from "../../../core/services/api.service";
 import {ModuleService} from "../../../core/services/module.service";
 import {MessageService} from "../../../core/services/message-service.service";
@@ -47,13 +46,6 @@ export class WelcomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.userid = localStorage.getItem("_id")
-  }
-
-  error(): void {
-    this.apiService.doError().subscribe((data: Echo) => {
-    }, (error: any) => {
-      console.log('In Component:', error);
-    });
   }
 
   createModule(type: string) {

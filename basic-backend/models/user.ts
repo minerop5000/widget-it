@@ -84,7 +84,6 @@ export function getNumberOfUser(callback: (arg0: Error | null, arg1: any) => voi
         if (err) {
             callback(err, null);
         } else {
-            console.log("count: " + data)
             callback(null, data);
         }
     });

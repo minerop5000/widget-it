@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {Echo} from '../../models/echo.model';
 import {catchError} from 'rxjs/operators';
 import {LoginUser, RegisterUser, User} from "../../models/user.model";
 
@@ -13,18 +12,6 @@ export class ApiService {
   private readonly baseUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) {
-  }
-
-  doError(): Observable<Echo> {
-    return this.http.post<Echo>(
-      `${this.baseUrl}/echo`,
-      {}
-    ).pipe(
-      catchError((err) => {
-        console.log('In Service:', err);
-        return throwError(err);
-      })
-    );
   }
 
   registerUser(user: RegisterUser): Observable<User> {

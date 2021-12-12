@@ -1,10 +1,10 @@
 import express from "express";
-import * as echoService from '../services/module';
+import * as moduleService from '../services/module';
 
 const router = express.Router();
 
 router.get('/:id', (req, res) => {
-    echoService.getModule(req.params.id, (err: Error | null, data: any) => {
+    moduleService.getModule(req.params.id, (err: Error | null, data: any) => {
         if (err) {
             res.status(500);
             res.send(err.message);
@@ -19,7 +19,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/:id', validateModule, (req, res) => {
-    echoService.updateModule(req.params.id, req.body.name, req.body.content, (err: Error | null, num: any, data: any) => {
+    moduleService.updateModule(req.params.id, req.body.name, req.body.content, (err: Error | null, num: any, data: any) => {
         if (err) {
             res.status(500);
             res.send(err.message);
@@ -35,7 +35,7 @@ router.post('/:id', validateModule, (req, res) => {
 });
 
 router.post('/create/:type', validateModule, (req, res) => {
-    echoService.createModule(req.params.type, req.body.name, req.body.content, (err: Error | null, data: any) => {
+    moduleService.createModule(req.params.type, req.body.name, req.body.content, (err: Error | null, data: any) => {
         if (err) {
             res.status(500);
             res.send(err.message);
