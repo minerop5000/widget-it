@@ -7,36 +7,17 @@ import {catchError} from "rxjs/operators";
   providedIn: 'root'
 })
 export class WeatherService {
-
-  // var options = {
-  //   method: 'POST',
-  //   url: 'https://accuweatherstefan-skliarovv1.p.rapidapi.com/getImagesByLocationKey',
-  //   headers: {
-  //     'content-type': 'application/x-www-form-urlencoded',
-  //     'x-rapidapi-host': 'AccuWeatherstefan-skliarovV1.p.rapidapi.com',
-  //     'x-rapidapi-key': 'da286b8082mshf9c151c6234938ap1a3a8ajsn5e92482ed801'
-  //   },
-  //   data: {locationKey: 'stuttgart', resolution: '<REQUIRED>', apiKey: '<REQUIRED>'}
-  // };
-
   constructor(private http: HttpClient) {
-
-
   }
 
-  getWeather(loc: any): Observable<any> {
-    return this.http.post<any>(
-      `https://accuweatherstefan-skliarovv1.p.rapidapi.com/getImagesByLocationKey`,
-      {},
-      {
-        headers: {
-          'content-type': 'application/x-www-form-urlencoded',
-          'x-rapidapi-host': 'AccuWeatherstefan-skliarovV1.p.rapidapi.com',
-          'x-rapidapi-key': 'da286b8082mshf9c151c6234938ap1a3a8ajsn5e92482ed801'
-        }
-      }
+  getWeather(city: string): Observable<any> {
+    return this.http.get<any>(
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=7af13cc263df04c09c703007d21093c9`
     ).pipe(
       catchError((err) => {
+        if(err.status == "Not Found"){
+          return new Observable()
+        }
         console.log('In Service:', err);
         return throwError(err);
       })

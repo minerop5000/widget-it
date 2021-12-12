@@ -45,6 +45,18 @@ textarea {
   text-align: center;
 }
 
-.number{
+.number {
   font-size: 30px;
+}
+
+.contentCol {
+  display: flex;
+  flex-flow: column;
+}
+
+.contentRow{
+  font-size: 30px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
 }

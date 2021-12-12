@@ -17,6 +17,7 @@ export class ModulComponent implements OnInit {
   @Input() modType: string;
   editNameMode = false
   @ViewChild('myInput') myInput: ElementRef;
+  gotWeather: boolean;
 
   constructor(private messageService: MessageService, private moduleService: ModuleService, private apiService: ApiService, private weatherService: WeatherService, private hostElement: ElementRef) {
   }
@@ -32,8 +33,12 @@ export class ModulComponent implements OnInit {
         this.content = number["numberOfUsers"];
       })
     } else if (this.modType == "weather") {
-      this.weatherService.getWeather("").subscribe(number => {
+      this.weatherService.getWeather(this.name).subscribe(weather => {
+        this.content = {}
+        this.content.temp = (weather.main.temp - 273.15).toFixed(1)
+        this.content.wind = (weather.wind.speed).toFixed(1)
       })
+
     } else if (this.modType == "counter") {
       this.moduleService.getModule(this.moduleID).subscribe(a => {
         this.content = a.content
