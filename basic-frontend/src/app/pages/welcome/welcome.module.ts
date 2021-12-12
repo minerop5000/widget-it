@@ -12,6 +12,7 @@ import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzBreadCrumbModule} from "ng-zorro-antd/breadcrumb";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzDropDownModule} from "ng-zorro-antd/dropdown";
+import {NzInputModule} from "ng-zorro-antd/input";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {NzDropDownModule} from "ng-zorro-antd/dropdown";
     NzMenuModule,
     NzBreadCrumbModule,
     NzButtonModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NzInputModule
   ],
   providers: [
     { provide: 'A', useValue: 1231111111111111111111111111}   // define a string token

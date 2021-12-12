@@ -32,6 +32,7 @@ export class WelcomePageComponent implements OnInit {
         for (let mod of user.settings.moduleList) {
           moduleService.getModule(mod).subscribe(module => {
             this.moduleList.push(module)
+            console.log(this.moduleList)
           })
         }
       }
@@ -95,7 +96,7 @@ export class WelcomePageComponent implements OnInit {
   createModule(type: string) {
     console.log("create" + type)
 
-    let t = this.moduleService.createModule(type, "stuttgart", {})
+    let t = this.moduleService.createModule(type, "stuttgart", {a:"a"})
     t.subscribe(data => {
       console.log(data)
       this.moduleList.push(data)

@@ -14,6 +14,7 @@ export class ModulComponent implements OnInit {
   @Input() moduleID: string;
   @Input() content: any;
   @Input() modType: string;
+  inputValue: any;
 
   constructor(private messageService: MessageService, private moduleService: ModuleService, private apiService: ApiService, private weatherService: WeatherService) {
   }
@@ -34,10 +35,30 @@ export class ModulComponent implements OnInit {
         this.content = number["numberOfUsers"];
         console.log(this.content)
       })
-    } else if(this.modType == "weather") {
+    } else if (this.modType == "weather") {
       this.weatherService.getWeather("").subscribe(number => {
         console.log(number)
       })
+    } else if (this.modType == "counter") {
+      this.moduleService.getModule(this.moduleID).subscribe(a => {
+        this.content = a.content
+        if (!this.content["counter"]) {
+          this.content["counter"] = 0
+        }
+        console.log(this.content.counter)
+      })
     }
+  }
+
+  counterMinus() {
+    this.content["counter"] -= 1
+    this.moduleService.updateModule(this.moduleID, this.name, this.content).subscribe(
+    )
+  }
+
+  counterPlus() {
+    this.content["counter"] += 1
+    this.moduleService.updateModule(this.moduleID, this.name, this.content).subscribe(
+    )
   }
 }

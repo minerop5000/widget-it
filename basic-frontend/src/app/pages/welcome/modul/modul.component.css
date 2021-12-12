@@ -22,3 +22,15 @@
   margin-bottom: auto;
 }
 
+.counter{
+  height: 150px;
+  width: 180px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+textarea{
+  max-height: 160px;
+  min-height: 160px;
+}

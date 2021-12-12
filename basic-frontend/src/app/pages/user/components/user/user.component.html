@@ -1,9 +1,10 @@
-<div *ngIf="user_id">
+<div *ngIf="user_id" class="userContent">
   <div id="user_info">
-    <p>logged in with {{user_id}}</p>
-    <div>as {{user.username}}</div>
+    <p>logged in as {{user.username}}</p>
     <div>email {{user.email}}</div>
-    <div>with settings: {{user.settings| json }}</div>
+    <hr>
+    <div>settings</div>
+    <div>{{user.settings| json }}</div>
   </div>
 
   <button nz-button nzType="primary" (click)="logOut()">log out</button>

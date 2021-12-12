@@ -1,0 +1,11 @@
+.userContent{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+#user_info{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}

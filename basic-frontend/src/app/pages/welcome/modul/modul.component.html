@@ -12,7 +12,18 @@
     </div>
     <div *ngSwitchCase="'weather'" class="content">
       <!-- weather widget start -->
-<!--      <a target="_blank" href="https://www.booked.net/weather/freudental-217135"><img src="https://w.bookcdn.com/weather/picture/25_217135_1_1_ecf0f1_250_bdc3c7_9da2a6_ffffff_1_2071c9_ffffff_0_6.png?scode=2&domid=w209&anc_id=79747"  alt="booked.net"/></a>&lt;!&ndash; weather widget end &ndash;&gt;-->
+      <!--      <a target="_blank" href="https://www.booked.net/weather/freudental-217135"><img src="https://w.bookcdn.com/weather/picture/25_217135_1_1_ecf0f1_250_bdc3c7_9da2a6_ffffff_1_2071c9_ffffff_0_6.png?scode=2&domid=w209&anc_id=79747"  alt="booked.net"/></a>&lt;!&ndash; weather widget end &ndash;&gt;-->
+    </div>
+    <div *ngSwitchCase="'counter'" class="content">
+      <div class="counter" style="font-size: 30px; ">
+        <i nz-icon nzType="minus-circle" nzTheme="twotone" (click)="counterMinus()"></i>
+        {{content.counter}}
+        <i nz-icon nzType="plus-circle" nzTheme="twotone" (click)="counterPlus()"></i>
+      </div>
+    </div>
+    <div *ngSwitchCase="'notes'" class="content">
+      <textarea rows="4" nz-input [(ngModel)]="inputValue"  ></textarea>
+
     </div>
     <div *ngSwitchDefault>
       {{moduleID}}

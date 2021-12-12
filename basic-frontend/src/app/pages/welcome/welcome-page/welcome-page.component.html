@@ -3,7 +3,6 @@
 <div id="modulContainer">
 
   {{moduleList}}
-  <app-modul name="eins"></app-modul>
   <app-modul *ngFor="let mod of moduleList" name={{mod.name}} moduleID={{mod._id}} content="{{mod.content}}"
              modType="{{mod.type}}"></app-modul>
 

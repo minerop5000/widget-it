@@ -38,4 +38,16 @@ export class ModuleService {
       })
     );
   }
+
+  updateModule(id: string, name: string, content: {}): Observable<OwnModule>{
+    return this.http.post<OwnModule>(
+      `${this.baseUrl}/${id}`,
+      {name: name, content: content}
+    ).pipe(
+      catchError((err) => {
+        console.log('In Service:', err);
+        return throwError(err);
+      })
+    );
+  }
 }
