@@ -1,0 +1,178 @@
+openapi: 3.0.1
+info:
+  title: widget-it
+  description:
+    "This is a sample server Petstore server.  You can find out more about     Swagger
+    at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For
+    this sample, you can use the api key `special-key` to test the authorization     filters."
+  contact:
+    email: cf.98@t-online.de
+  license:
+    name: GPL-3.0 License
+    url: https://www.gnu.org/licenses/gpl-3.0.en.html
+  version: 1.0.0
+servers:
+  - url: http://localhost:4200/api
+  - url: http://localhost:3000/api
+
+tags:
+  - name: user
+    description: Operations about user
+  - name: module
+    description: Operations about module
+
+paths:
+  /user/login:
+    post:
+      tags:
+        - user
+      summary: Login user
+      requestBody:
+        description: Pet object that needs to be added to the store
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          description: Body validation failed or wrong password
+          content: {}
+        401:
+          description: User not found
+          content: {}
+  /user/register:
+    post:
+      tags:
+        - user
+      summary: Login user
+      requestBody:
+        description: Login user and receive user
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                email:
+                  type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          description: Body validation failed or Can't insert key {}, it violates the unique constraint
+          content: {}
+  /user/settings:
+    post:
+      tags:
+        - user
+      summary: Login user
+      requestBody:
+        description: Update settings from user
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                email:
+                  type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          description: Body validation failed or id not found
+          content: {}
+  /user/changePassword:
+    post:
+      tags:
+        - user
+      summary: Login user
+      requestBody:
+        description: Update password from user
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                newPassword:
+                  type: string
+        required: true
+      responses:
+        200:
+          description: password successfully changed
+          content: {}
+        400:
+          description: Body validation failed
+          content: {}
+        401:
+          description: user not found
+          content: {}
+
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        settings:
+          type: object
+        email:
+          type: string
+    Module:
+      type: object
+      properties:
+        _id:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+        content:
+          type: object
+
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
