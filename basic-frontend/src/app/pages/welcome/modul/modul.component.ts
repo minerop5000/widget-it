@@ -27,7 +27,7 @@ export class ModulComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.messageService.noWeather().subscribe(()=>{
+    this.messageService.noWeather().subscribe(() => {
       this.gotWeather = false
     })
 

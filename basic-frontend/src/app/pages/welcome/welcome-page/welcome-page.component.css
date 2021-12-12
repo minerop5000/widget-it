@@ -1,4 +1,4 @@
-#modulContainer{
+#modulContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -14,7 +14,7 @@
   float: left;
 }
 
-.creator{
+.creator {
   background-color: white;
   min-height: 200px;
   min-width: 200px;
