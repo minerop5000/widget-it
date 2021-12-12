@@ -14,6 +14,7 @@ export class ModulComponent implements OnInit {
   @Input() moduleID: string;
   @Input() content: any;
   @Input() modType: string;
+  editNameMode = false
 
   constructor(private messageService: MessageService, private moduleService: ModuleService, private apiService: ApiService, private weatherService: WeatherService) {
   }
@@ -66,5 +67,16 @@ export class ModulComponent implements OnInit {
     console.log(event.target.value);
     this.moduleService.updateModule(this.moduleID, this.name, {notes: event.target.value}).subscribe(
     )
+  }
+
+  editName(){
+    this.editNameMode = true
+  }
+
+  nameChanged(event: any){
+    this.editNameMode = false
+    this.moduleService.updateModule(this.moduleID, this.name, this.content).subscribe(
+    )
+    console.log("change")
   }
 }

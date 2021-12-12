@@ -1,21 +1,22 @@
 <div class="modul">
   <div class="moduleHeader">
-    <div>{{name}}</div>
-    <div><i nz-icon nzType="edit" nzTheme="twotone"></i></div>
+    <div *ngIf="!editNameMode">{{name}}</div>
+    <input *ngIf="editNameMode" nzSize="small" nz-input placeholder="name" [(ngModel)]="name" (change)="nameChanged($event)">
+    <a (click)="editName()"><i nz-icon nzType="edit" nzTheme="twotone" *ngIf="!editNameMode"></i></a>
     <a (click)="delete()"><i nz-icon nzType="delete" nzTheme="twotone"></i></a>
   </div>
   <div class="content" [ngSwitch]="modType">
 
-    <div *ngSwitchCase="'userCount'" class="content">
+    <div *ngSwitchCase="'userCount'" class="content regUser">
       <div>Number of registered users:</div>
-      <div>{{content}}</div>
+      <div class="number">{{content}}</div>
     </div>
     <div *ngSwitchCase="'weather'" class="content">
       <!-- weather widget start -->
       <!--      <a target="_blank" href="https://www.booked.net/weather/freudental-217135"><img src="https://w.bookcdn.com/weather/picture/25_217135_1_1_ecf0f1_250_bdc3c7_9da2a6_ffffff_1_2071c9_ffffff_0_6.png?scode=2&domid=w209&anc_id=79747"  alt="booked.net"/></a>&lt;!&ndash; weather widget end &ndash;&gt;-->
     </div>
     <div *ngSwitchCase="'counter'" class="content">
-      <div class="counter" style="font-size: 30px; ">
+      <div class="counter">
         <i nz-icon nzType="minus-circle" nzTheme="twotone" (click)="counterMinus()"></i>
         {{content.counter}}
         <i nz-icon nzType="plus-circle" nzTheme="twotone" (click)="counterPlus()"></i>
