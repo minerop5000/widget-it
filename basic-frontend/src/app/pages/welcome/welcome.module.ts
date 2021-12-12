@@ -32,9 +32,6 @@ import {NzInputModule} from "ng-zorro-antd/input";
     NzButtonModule,
     NzDropDownModule,
     NzInputModule
-  ],
-  providers: [
-    {provide: 'A', useValue: 1231111111111111111111111111}   // define a string token todo
   ]
 })
 

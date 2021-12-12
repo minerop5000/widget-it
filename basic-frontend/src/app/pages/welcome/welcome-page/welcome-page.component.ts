@@ -31,7 +31,6 @@ export class WelcomePageComponent implements OnInit {
       }
     })
 
-    const A = this.injector.get('A'); //todo
     this.messageService.getMessage().subscribe(message => {
       var index = this.moduleList.map((x: { [x: string]: any; }) => {
         return x["_id"];
