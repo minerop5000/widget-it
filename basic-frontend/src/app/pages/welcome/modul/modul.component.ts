@@ -33,12 +33,7 @@ export class ModulComponent implements OnInit {
         this.content = number["numberOfUsers"];
       })
     } else if (this.modType == "weather") {
-      this.weatherService.getWeather(this.name).subscribe(weather => {
-        this.content = {}
-        this.content.temp = (weather.main.temp - 273.15).toFixed(1)
-        this.content.wind = (weather.wind.speed).toFixed(1)
-      })
-
+      this.updateWeather()
     } else if (this.modType == "counter") {
       this.moduleService.getModule(this.moduleID).subscribe(a => {
         this.content = a.content
@@ -54,6 +49,14 @@ export class ModulComponent implements OnInit {
         }
       })
     }
+  }
+
+  updateWeather() {
+    this.weatherService.getWeather(this.name).subscribe(weather => {
+      this.content = {}
+      this.content.temp = (weather.main.temp - 273.15).toFixed(1)
+      this.content.wind = (weather.wind.speed).toFixed(1)
+    })
   }
 
   counterMinus() {
@@ -82,5 +85,6 @@ export class ModulComponent implements OnInit {
     this.editNameMode = false
     this.moduleService.updateModule(this.moduleID, this.name, this.content).subscribe(
     )
+    this.updateWeather()
   }
 }
