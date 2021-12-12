@@ -75,13 +75,10 @@ export class ApiService {
   }
 
   pushSettings(settings: {}, _id: any) {
-    console.log("push")
-    console.log(settings)
     this.http.post<string>(
       `${this.baseUrl}/user/settings`,
       {settings: settings, _id: _id}
     ).subscribe(data => {
-      console.log(data)
     })
     //   .(
     //   catchError((err) => {

@@ -23,14 +23,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    console.log(f.value)
-    console.log(f.valid)
-
     this.apiService.loginUser({
       username: f.value.username,
       password: f.value.password
     }).subscribe((data: User) => {
-      console.log("login", data);
       localStorage.setItem("_id", data._id);
       localStorage.setItem("username", data.username);
       localStorage.setItem("settings", JSON.stringify(data.settings));

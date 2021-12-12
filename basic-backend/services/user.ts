@@ -35,7 +35,6 @@ export function loginUser(message: any, callback: (arg0: Error | null, arg1: { p
         if (err) {
             callback(err, null);
         } else {
-            console.log(data)
             if (data.length == 0) {
                 callback(Error("user not found"), null);
             } else {

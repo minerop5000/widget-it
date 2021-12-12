@@ -27,8 +27,6 @@ export class UserComponent implements OnInit {
     if (!this.user_id) {
       this.router.navigate(["user/login"])
     } else {
-      console.log("done1")
-      console.log(this.user_id)
       this.userService.updateLocalStorage(this.user_id)
       this.user = {
         _id: localStorage.getItem("_id"),
@@ -56,7 +54,6 @@ export class UserComponent implements OnInit {
 
   private storageEventListener(event: StorageEvent) {
     if (event.storageArea == localStorage) {
-      console.log("storage")
       this.user = {
         _id: localStorage.getItem("_id"),
         settings: localStorage.getItem("settings"),

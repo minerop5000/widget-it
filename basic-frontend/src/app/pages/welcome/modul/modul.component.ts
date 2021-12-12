@@ -30,11 +30,9 @@ export class ModulComponent implements OnInit {
     if (this.modType == "userCount") {
       this.apiService.getUserCount().subscribe(number => {
         this.content = number["numberOfUsers"];
-        console.log(this.content)
       })
     } else if (this.modType == "weather") {
       this.weatherService.getWeather("").subscribe(number => {
-        console.log(number)
       })
     } else if (this.modType == "counter") {
       this.moduleService.getModule(this.moduleID).subscribe(a => {
@@ -66,7 +64,6 @@ export class ModulComponent implements OnInit {
   }
 
   onInputChange(event: any) {
-    console.log(event.target.value);
     this.moduleService.updateModule(this.moduleID, this.name, {notes: event.target.value}).subscribe(
     )
   }
@@ -80,6 +77,5 @@ export class ModulComponent implements OnInit {
     this.editNameMode = false
     this.moduleService.updateModule(this.moduleID, this.name, this.content).subscribe(
     )
-    console.log("change")
   }
 }

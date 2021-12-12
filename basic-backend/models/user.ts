@@ -48,7 +48,6 @@ export function setSettings(msg: any, callback: (arg0: Error | null, arg1: { use
 
     db.user.find(query, (err: Error | null, data: any) => {
         if (err) {
-            console.log("1")
             callback(err, null);
         } else {
             if(data.length == 0) {
@@ -57,16 +56,12 @@ export function setSettings(msg: any, callback: (arg0: Error | null, arg1: { use
             }
             const prevSettings = data[0].settings
             keys.forEach(function (key) {
-                console.log(key)
                 prevSettings[key] = msg.settings[key]
             })
             db.user.update({"_id": msg._id}, {$set: {settings: prevSettings}}, {returnUpdatedDocs: true}, (err: Error | null, num: any, data: any) => {
                 if (err) {
                     callback(err, null);
                 } else {
-                    console.log(num)
-                    console.log(data)
-
                     callback(null, data);
                 }
             });
@@ -100,7 +95,6 @@ export function getUserInfo(_id: string, callback: (arg0: Error | null, arg1: an
         if (err) {
             callback(err, null);
         } else {
-            console.log("found user" + data)
             callback(null, data);
         }
     });

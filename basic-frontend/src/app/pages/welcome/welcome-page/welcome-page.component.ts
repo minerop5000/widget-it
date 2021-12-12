@@ -22,33 +22,26 @@ export class WelcomePageComponent implements OnInit {
     }
 
     this.apiService.getUserInfo(localStorage.getItem("_id")).subscribe(user => {
-      console.log(user)
       if (user.settings.moduleList) {
         for (let mod of user.settings.moduleList) {
           moduleService.getModule(mod).subscribe(module => {
             this.moduleList.push(module)
-            console.log(this.moduleList)
           })
         }
       }
     })
 
-    const A = this.injector.get('A');
-    console.log(A);
-
+    const A = this.injector.get('A'); //todo
     this.messageService.getMessage().subscribe(message => {
       var index = this.moduleList.map((x: { [x: string]: any; }) => {
         return x["_id"];
       }).indexOf(message["idToDelete"]);
 
       this.moduleList.splice(index, 1);
-      console.log("delete")
-      console.log(this.moduleList)
       let t = []
       for (let i of this.moduleList) {
         t.push(i["_id"])
       }
-      console.log(t)
       this.apiService.pushSettings({moduleList: t}, this.userid)
     });
   }
@@ -59,26 +52,19 @@ export class WelcomePageComponent implements OnInit {
 
   error(): void {
     this.apiService.doError().subscribe((data: Echo) => {
-      console.log(data);
     }, (error: any) => {
       console.log('In Component:', error);
     });
   }
 
   createModule(type: string) {
-    console.log("create" + type)
-
     let t = this.moduleService.createModule(type, "widget name", {})
     t.subscribe(data => {
-      console.log(data)
       this.moduleList.push(data)
-      console.log(this.moduleList)
       let t = []
       for (let i of this.moduleList) {
         t.push(i["_id"])
       }
-      console.log("pushung")
-      console.log(t)
       this.apiService.pushSettings({moduleList: t}, this.userid)
       this.moduleService.moduelContent = this.moduleList
     })

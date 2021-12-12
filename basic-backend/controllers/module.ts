@@ -35,8 +35,6 @@ router.post('/:id', validateModule, (req, res) => {
 });
 
 router.post('/create/:type', validateModule, (req, res) => {
-    console.log("moduel create: " + req.params.type)
-
     echoService.createModule(req.params.type, req.body.name, req.body.content, (err: Error | null, data: any) => {
         if (err) {
             res.status(500);
