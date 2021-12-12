@@ -139,6 +139,140 @@ paths:
         401:
           description: user not found
           content: {}
+  /user/numberOfUser:
+    get:
+      tags:
+        - user
+      summary: Login user
+      responses:
+        200:
+          description: ok
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  numberOfUsers:
+                    type: number
+  /user/getUserInfo:
+    post:
+      tags:
+        - user
+      summary: Login user
+      requestBody:
+        description: Login user and receive user
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          description: Body validation failed
+          content: {}
+        401:
+          description: user not found
+          content: {}
+
+  /module/{id}:
+    parameters:
+    - schema:
+        type: integer
+      name: id
+      description: _id of module
+      in: path
+      required: true
+    get:
+      tags:
+        - module
+      summary: get module
+      responses:
+        200:
+          description: OK
+          content:
+            json:
+              schema:
+                $ref: "#/components/schemas/Module"
+        404:
+          description: id not found
+          content: {}
+  /module/create/{type}:
+    parameters:
+    - schema:
+        type: string
+      name: type
+      description: type of module
+      in: path
+      required: true
+    post:
+      tags:
+        - module
+      summary: create new module by type
+      requestBody:
+        description: new module
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                content:
+                  type: object
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            json:
+              schema:
+                $ref: "#/components/schemas/Module"
+  /module/{_id}:
+    parameters:
+    - schema:
+        type: string
+      name: type
+      description: type of module
+      in: path
+      required: true
+    post:
+      tags:
+        - module
+      summary: update module
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                content:
+                  type: object
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            json:
+              schema:
+                $ref: "#/components/schemas/Module"
+        400:
+          description: Body validation failed
+          content: {}
+        404:
+          description: id not found
+          content: {}
+
 
 
 components:
@@ -149,8 +283,6 @@ components:
         _id:
           type: string
         username:
-          type: string
-        password:
           type: string
         settings:
           type: object

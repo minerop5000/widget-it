@@ -101,7 +101,7 @@ export function getUserInfo(_id: string, callback: (arg0: Error | null, arg1: an
             callback(err, null);
         } else {
             console.log("found user" + data)
-            callback(null, data[0]);
+            callback(null, data);
         }
     });
 }
