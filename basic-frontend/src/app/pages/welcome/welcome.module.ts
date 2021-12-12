@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {WelcomeRoutingModule} from './welcome-routing.module';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {SharedModule} from "../../shared/shared.module";
-import { ModulComponent } from './modul/modul.component';
+import {ModulComponent} from './modul/modul.component';
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzSpaceModule} from "ng-zorro-antd/space";
 import {NzCardModule} from "ng-zorro-antd/card";
@@ -34,7 +34,7 @@ import {NzInputModule} from "ng-zorro-antd/input";
     NzInputModule
   ],
   providers: [
-    { provide: 'A', useValue: 1231111111111111111111111111}   // define a string token
+    {provide: 'A', useValue: 1231111111111111111111111111}   // define a string token todo
   ]
 })
 

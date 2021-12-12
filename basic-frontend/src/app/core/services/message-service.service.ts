@@ -14,5 +14,4 @@ export class MessageService {
   getMessage(): Observable<any> {
     return this.subject.asObservable();
   }
-
 }

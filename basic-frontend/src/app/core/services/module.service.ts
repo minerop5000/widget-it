@@ -9,9 +9,8 @@ import {OwnModule} from "../../models/module.model";
 })
 export class ModuleService {
 
-  private readonly baseUrl = 'http://localhost:3000/api/module';
-
   public moduelContent = {}
+  private readonly baseUrl = 'http://localhost:3000/api/module';
 
   constructor(private http: HttpClient) {
   }
@@ -39,7 +38,7 @@ export class ModuleService {
     );
   }
 
-  updateModule(id: string, name: string, content: {}): Observable<OwnModule>{
+  updateModule(id: string, name: string, content: {}): Observable<OwnModule> {
     return this.http.post<OwnModule>(
       `${this.baseUrl}/${id}`,
       {name: name, content: content}

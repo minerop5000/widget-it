@@ -10,7 +10,6 @@ export class UserService {
   constructor(private apiService: ApiService) {
   }
 
-
   updateLocalStorage(_id: string) {
     return this.apiService.getUserInfo(_id).subscribe((data: User) => {
       console.log(data);
@@ -20,9 +19,5 @@ export class UserService {
       localStorage.setItem("email", data.email);
       console.log("set done")
     });
-  }
-
-  setSettings(setting:any){
-
   }
 }

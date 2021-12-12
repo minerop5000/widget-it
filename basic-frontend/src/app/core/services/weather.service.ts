@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
@@ -23,15 +23,18 @@ export class WeatherService {
 
 
   }
+
   getWeather(loc: any): Observable<any> {
     return this.http.post<any>(
       `https://accuweatherstefan-skliarovv1.p.rapidapi.com/getImagesByLocationKey`,
       {},
-      {headers: {
+      {
+        headers: {
           'content-type': 'application/x-www-form-urlencoded',
           'x-rapidapi-host': 'AccuWeatherstefan-skliarovV1.p.rapidapi.com',
           'x-rapidapi-key': 'da286b8082mshf9c151c6234938ap1a3a8ajsn5e92482ed801'
-        }}
+        }
+      }
     ).pipe(
       catchError((err) => {
         console.log('In Service:', err);

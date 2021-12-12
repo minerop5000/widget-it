@@ -11,11 +11,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./welcome-page.component.css']
 })
 export class WelcomePageComponent implements OnInit {
-
-  createInput: string;
-  filterInput: string;
-
-  echos: Echo[];
   userid: String;
 
   listOfModulTypes = ["notes", "weather", "counter", "userCount"]
@@ -38,7 +33,6 @@ export class WelcomePageComponent implements OnInit {
       }
     })
 
-    this.loadEchos();
     const A = this.injector.get('A');
     console.log(A);
 
@@ -59,30 +53,8 @@ export class WelcomePageComponent implements OnInit {
     });
   }
 
-
   ngOnInit(): void {
     this.userid = localStorage.getItem("_id")
-  }
-
-  addEcho(): void {
-    this.apiService.createEcho({
-      message: this.createInput
-    }).subscribe((data: Echo) => {
-      if (this.echos) {
-        this.echos.push(data);
-        this.echos.sort((a, b) => a.message.localeCompare(b.message));
-      } else {
-        this.echos = [data];
-      }
-    });
-  }
-
-  loadEchos(): void {
-    this.apiService.getEchos(this.filterInput)
-      .subscribe((data: Echo[]) => {
-        this.echos = data;
-        this.echos.sort((a, b) => a.message.localeCompare(b.message));
-      });
   }
 
   error(): void {
@@ -113,6 +85,6 @@ export class WelcomePageComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    // unsubscribe to ensure no memory leaks
+    // unsubscribe to ensure no memory leaks todo
   }
 }

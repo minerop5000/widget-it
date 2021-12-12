@@ -9,10 +9,9 @@ import {FooterComponent} from "./core/footer/footer.component";
 import {CommonModule, registerLocaleData} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
-import { de_DE } from 'ng-zorro-antd/i18n';
+import {de_DE, NZ_I18N} from 'ng-zorro-antd/i18n';
 import de from '@angular/common/locales/de';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NzButtonModule} from "ng-zorro-antd/button";
 
 registerLocaleData(de);
@@ -33,7 +32,7 @@ registerLocaleData(de);
     BrowserAnimationsModule,
     NzButtonModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: de_DE }],
+  providers: [{provide: NZ_I18N, useValue: de_DE}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

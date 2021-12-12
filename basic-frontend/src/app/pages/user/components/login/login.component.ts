@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
     console.log(f.value)
     console.log(f.valid)
 
-
     this.apiService.loginUser({
       username: f.value.username,
       password: f.value.password
@@ -39,7 +38,4 @@ export class LoginComponent implements OnInit {
       this.router.navigate([""])
     });
   }
-
-
 }
-

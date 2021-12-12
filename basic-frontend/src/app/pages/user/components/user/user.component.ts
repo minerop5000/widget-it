@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ApiService} from "../../../../core/services/api.service";
-import {UserModule} from "../../user.module";
 import {UserService} from "../../../../core/services/user.service";
 
 
@@ -49,7 +48,6 @@ export class UserComponent implements OnInit {
   pushSettings(): void {
     this.apiService.pushSettings(this.user.settings, this.user._id)
   }
-
 
 
   private start(): void {

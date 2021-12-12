@@ -8,8 +8,6 @@ import {ResetPasswordComponent} from './components/reset-password/reset-password
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UserComponent} from './components/user/user.component';
 import {NgxColorsModule} from "ngx-colors";
-import {User} from "../../models/user.model";
-import {ApiService} from "../../core/services/api.service";
 import {NzButtonModule} from "ng-zorro-antd/button";
 
 @NgModule({
@@ -31,8 +29,6 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 export class UserModule {
   constructor() {
   }
-
-
 
 }
 

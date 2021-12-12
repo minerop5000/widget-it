@@ -19,16 +19,11 @@ export class ModulComponent implements OnInit {
   }
 
   delete(): void {
-    // send message to subscribers via observable subject
     this.messageService.delete(this.moduleID);
   }
 
   ngOnInit(): void {
-    this.moduleService.getModule(this.moduleID).subscribe(mod => {
-      // this.module = mod
-      // console.log("moduel: ")
-      // console.log(this.module)
-    })
+
     if (this.modType == "userCount") {
       this.apiService.getUserCount().subscribe(number => {
         this.content = number["numberOfUsers"];
@@ -44,7 +39,6 @@ export class ModulComponent implements OnInit {
         if (!this.content["counter"]) {
           this.content["counter"] = 0
         }
-        console.log(this.content.counter)
       })
     } else if (this.modType == "notes") {
       this.moduleService.getModule(this.moduleID).subscribe(a => {
@@ -52,7 +46,6 @@ export class ModulComponent implements OnInit {
         if (!this.content["notes"]) {
           this.content["notes"] = ""
         }
-        console.log(this.content.notes)
       })
     }
   }
