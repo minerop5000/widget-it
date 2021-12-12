@@ -13,14 +13,17 @@
       <div class="number">{{content}}</div>
     </div>
     <div *ngSwitchCase="'weather'" class="content contentCol">
-      <div class="contentRow">
-        <img src="assets/images/icon-temp.png" style="height: 30px">
-        {{content.temp}} C°
+      <div *ngIf="gotWeather">
+        <div class="contentRow">
+          <img src="assets/images/icon-temp.png" style="height: 30px">
+          {{content.temp}} C°
+        </div>
+        <div class="contentRow">
+          <img src="assets/images/icon-wind.png" style="height: 30px">
+          {{content.wind}} km/h
+        </div>
       </div>
-      <div class="contentRow">
-        <img src="assets/images/icon-wind.png" style="height: 30px">
-         {{content.wind}} km/h
-      </div>
+      <div *ngIf="!gotWeather">city not found</div>
     </div>
     <div *ngSwitchCase="'counter'" class="content">
       <div class="counter">

@@ -27,6 +27,10 @@ export class ModulComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.messageService.noWeather().subscribe(()=>{
+      console.log("123123213")
+      this.gotWeather = false
+    })
 
     if (this.modType == "userCount") {
       this.apiService.getUserCount().subscribe(number => {
@@ -56,8 +60,10 @@ export class ModulComponent implements OnInit {
       this.content = {}
       this.content.temp = (weather.main.temp - 273.15).toFixed(1)
       this.content.wind = (weather.wind.speed).toFixed(1)
+      this.gotWeather = true
     })
   }
+
 
   counterMinus() {
     this.content["counter"] -= 1
@@ -85,6 +91,6 @@ export class ModulComponent implements OnInit {
     this.editNameMode = false
     this.moduleService.updateModule(this.moduleID, this.name, this.content).subscribe(
     )
-    this.updateWeather()
+    if (this.modType == "weather") this.updateWeather()
   }
 }

@@ -6,6 +6,7 @@ import {Observable, Subject} from 'rxjs';
 })
 export class MessageService {
   private subject = new Subject<any>();
+  private subject2 = new Subject<any>();
 
   delete(id: string) {
     this.subject.next({idToDelete: id});
@@ -13,5 +14,13 @@ export class MessageService {
 
   getMessage(): Observable<any> {
     return this.subject.asObservable();
+  }
+
+  setNoWeather() {
+    this.subject2.next({noWeather: true});
+  }
+
+  noWeather(): Observable<any> {
+    return this.subject2.asObservable();
   }
 }
