@@ -1,6 +1,8 @@
 # widget-it
 
-your new browser starting page!
+Your new browser starting page!
+
+Customize your browser starting page with widgets and be directly up to date as well as manage your daily tasks.
 
 ![screenshot](widget-it.png)
  
