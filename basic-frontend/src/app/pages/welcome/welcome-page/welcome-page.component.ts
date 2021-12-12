@@ -96,7 +96,7 @@ export class WelcomePageComponent implements OnInit {
   createModule(type: string) {
     console.log("create" + type)
 
-    let t = this.moduleService.createModule(type, "stuttgart", {a:"a"})
+    let t = this.moduleService.createModule(type, "stuttgart", {})
     t.subscribe(data => {
       console.log(data)
       this.moduleList.push(data)

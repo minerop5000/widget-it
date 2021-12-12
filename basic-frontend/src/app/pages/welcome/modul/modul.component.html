@@ -22,8 +22,7 @@
       </div>
     </div>
     <div *ngSwitchCase="'notes'" class="content">
-      <textarea rows="4" nz-input [(ngModel)]="inputValue"  ></textarea>
-
+      <textarea rows="4" nz-input [(ngModel)]="content.notes" (change)="onInputChange($event)" ></textarea>
     </div>
     <div *ngSwitchDefault>
       {{moduleID}}
