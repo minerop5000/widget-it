@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ApiService} from "../../../../core/services/api.service";
 import {UserService} from "../../../../core/services/user.service";
+import {MessageService} from "../../../../core/services/message-service.service";
 
 
 @Component({
@@ -14,7 +15,7 @@ export class UserComponent implements OnInit {
   user: any;
 
 
-  constructor(private apiService: ApiService, private router: Router, private userService: UserService) {
+  constructor(private apiService: ApiService, private router: Router, private userService: UserService, private messageService: MessageService) {
     this.start();
   }
 
@@ -35,16 +36,42 @@ export class UserComponent implements OnInit {
         email: localStorage.getItem("email")
       }
       this.user.settings = JSON.parse(this.user.settings)
+      this.apiService.getUserInfo(localStorage.getItem("_id")).subscribe(data => {
+        console.log(data)
+        if (data.settings.color) {
+          this.user.settings.color = data.settings.color
+        }
+      })
     }
   }
 
   logOut(): void {
     localStorage.clear();
     this.router.navigate(["user/login"])
+    this.messageService.setUpdateColor()
   }
 
   pushSettings(): void {
     this.apiService.pushSettings(this.user.settings, this.user._id)
+    this.messageService.setUpdateColor()
+    this.apiService.getUserInfo(localStorage.getItem("_id")).subscribe(data => {
+      console.log(data)
+      if (data.settings.color) {
+        this.user.settings.color = data.settings.color
+      }
+    })
+  }
+
+  resetColor(){
+    this.user.settings.color = "#e0dddd"
+    this.apiService.pushSettings(this.user.settings, this.user._id)
+    this.messageService.setUpdateColor()
+    this.apiService.getUserInfo(localStorage.getItem("_id")).subscribe(data => {
+      console.log(data)
+      if (data.settings.color) {
+        this.user.settings.color = data.settings.color
+      }
+    })
   }
 
 

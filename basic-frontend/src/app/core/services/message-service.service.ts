@@ -7,6 +7,7 @@ import {Observable, Subject} from 'rxjs';
 export class MessageService {
   private subject = new Subject<any>();
   private subject2 = new Subject<any>();
+  private color = new Subject<any>();
 
   delete(id: string) {
     this.subject.next({idToDelete: id});
@@ -22,5 +23,13 @@ export class MessageService {
 
   noWeather(): Observable<any> {
     return this.subject2.asObservable();
+  }
+
+  setUpdateColor() {
+    this.color.next({});
+  }
+
+  updateColor(): Observable<any> {
+    return this.color.asObservable();
   }
 }

@@ -12,6 +12,22 @@
 }
 
 
-button {
+#logOutButton {
   margin-top: 20px;
+}
+
+.colorSettings {
+  margin-top: 30px;
+  display: flex;
+  flex-flow: column;
+}
+
+.settingLine {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.marginLeft {
+  margin-left: 10px;
 }

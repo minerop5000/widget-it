@@ -1,10 +1,19 @@
 <div *ngIf="user_id" class="userContent">
   <div id="user_info">
-    <p>logged in as {{user.username}}</p>
-    <div>email {{user.email}}</div>
+    <p>logged in as: {{user.username}}</p>
+    <div>email: {{user.email}}</div>
     <a [routerLink]="['./reset-password']" style="font-size: medium">Change Password</a>
-    <button nz-button nzType="primary" (click)="logOut()">log out</button>
+    <button nz-button nzType="primary" (click)="logOut()" id="logOutButton">log out</button>
   </div>
 
+  <div class="colorSettings">
+    <h2>settings</h2>
+    <h5>background-color</h5>
+    <div class="settingLine">
+      <ngx-colors ngx-colors-trigger [(ngModel)]="user.settings.color"></ngx-colors>
+      <button nz-button nzType="primary" (click)="pushSettings()" class="marginLeft">apply</button>
+      <button nz-button nzType="primary" (click)="resetColor()" class="marginLeft">reset</button>
+    </div>
+  </div>
 </div>
 <p *ngIf="!user_id">not logged in</p>
