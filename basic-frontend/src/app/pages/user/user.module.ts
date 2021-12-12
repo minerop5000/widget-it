@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UserComponent} from './components/user/user.component';
 import {NgxColorsModule} from "ngx-colors";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzInputModule} from "ng-zorro-antd/input";
 
 @NgModule({
   declarations: [
@@ -17,14 +18,15 @@ import {NzButtonModule} from "ng-zorro-antd/button";
     ResetPasswordComponent,
     UserComponent
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    FormsModule,
-    NgxColorsModule,
-    ReactiveFormsModule,
-    NzButtonModule
-  ]
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        FormsModule,
+        NgxColorsModule,
+        ReactiveFormsModule,
+        NzButtonModule,
+        NzInputModule
+    ]
 })
 export class UserModule {
   constructor() {

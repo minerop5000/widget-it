@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {MessageService} from "../../../core/services/message-service.service";
 import {ModuleService} from "../../../core/services/module.service";
 import {ApiService} from "../../../core/services/api.service";
 import {WeatherService} from "../../../core/services/weather.service";
+
 
 @Component({
   selector: 'app-modul',
@@ -15,8 +16,9 @@ export class ModulComponent implements OnInit {
   @Input() content: any;
   @Input() modType: string;
   editNameMode = false
+  @ViewChild('myInput') myInput: ElementRef;
 
-  constructor(private messageService: MessageService, private moduleService: ModuleService, private apiService: ApiService, private weatherService: WeatherService) {
+  constructor(private messageService: MessageService, private moduleService: ModuleService, private apiService: ApiService, private weatherService: WeatherService, private hostElement: ElementRef) {
   }
 
   delete(): void {
@@ -69,11 +71,12 @@ export class ModulComponent implements OnInit {
     )
   }
 
-  editName(){
+  editName() {
     this.editNameMode = true
+    //todo focus
   }
 
-  nameChanged(event: any){
+  nameChanged(event: any) {
     this.editNameMode = false
     this.moduleService.updateModule(this.moduleID, this.name, this.content).subscribe(
     )
